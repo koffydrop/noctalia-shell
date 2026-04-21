@@ -375,7 +375,7 @@ Singleton {
                    while (popupModel.count > maxPopups) {
                      const last = popupModel.get(popupModel.count - 1);
                      // Overflow only removes from ACTIVE view, but keeps it for history
-                     popupState[last.id]?.notification?.dismiss(); // Visually dismiss
+                     // popupState[last.id]?.notification?.dismiss(); // Visually dismiss
                      popupModel.remove(popupModel.count - 1);
                      // DO NOT call cleanupNotification here, we want to keep it for history actions
                    }
@@ -1053,6 +1053,7 @@ Singleton {
   }
 
   function removeFromHistory(notificationId) {
+    popupState[notificationId]?.notification?.dismiss?.()
     for (var i = 0; i < historyModel.count; i++) {
       const notif = historyModel.get(i);
       if (notif.id === notificationId) {
